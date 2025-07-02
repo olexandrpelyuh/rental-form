@@ -3,65 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бриф - Маркетингова стратегія</title>
+    <title>Бриф - Маркетингова стратегія оренди нерухомості</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
+        /* Reset для форми */
+        .mbf-wrapper {
+            all: initial;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: block;
         }
-        .brief-iframe-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        #briefIframe {
-            width: 100%;
-            height: 3000px;
-            border: none;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-            border-radius: 10px;
-        }
-        @media (max-width: 768px) {
-            .brief-iframe-container {
-                padding: 10px;
-            }
-            #briefIframe {
-                height: 3500px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="brief-iframe-container">
-        <iframe id="briefIframe" srcdoc='
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
+        
+        .mbf-wrapper * {
+            all: unset;
+            display: revert;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
+        /* Основні стилі */
+        .mbf-wrapper {
             background-color: #f5f5f5;
+            padding: 20px 0;
+            min-height: 100vh;
         }
         
-        .container {
+        .mbf-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
-        .form-header {
+        .mbf-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 40px 30px;
@@ -69,17 +39,23 @@
             text-align: center;
         }
         
-        .form-header h1 {
+        .mbf-header h1 {
             font-size: 28px;
             margin-bottom: 10px;
+            color: white;
+            font-weight: bold;
+            display: block;
         }
         
-        .form-header p {
+        .mbf-header p {
             font-size: 18px;
             opacity: 0.9;
+            color: white;
+            margin: 0;
+            display: block;
         }
         
-        .progress-container {
+        .mbf-progress {
             background: #f0f0f0;
             height: 30px;
             border-radius: 15px;
@@ -88,7 +64,7 @@
             overflow: hidden;
         }
 
-        .progress-bar {
+        .mbf-progress-bar {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             height: 100%;
             width: 0%;
@@ -96,7 +72,7 @@
             transition: width 0.3s ease;
         }
 
-        .progress-text {
+        .mbf-progress-text {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -106,37 +82,39 @@
             font-size: 14px;
         }
         
-        form {
+        .mbf-form {
             background: white;
             padding: 40px 30px;
             border-radius: 0 0 10px 10px;
             box-shadow: 0 5px 30px rgba(0,0,0,0.1);
         }
         
-        .section {
+        .mbf-section {
             margin-bottom: 40px;
             padding-bottom: 30px;
             border-bottom: 2px solid #f0f0f0;
         }
         
-        .section:last-child {
+        .mbf-section:last-child {
             border-bottom: none;
             margin-bottom: 20px;
             padding-bottom: 0;
         }
         
-        .section-title {
+        .mbf-section-title {
             font-size: 20px;
             color: #667eea;
             margin-bottom: 20px;
             font-weight: 600;
+            display: block;
         }
         
-        .form-group {
+        .mbf-group {
             margin-bottom: 20px;
+            display: block;
         }
         
-        label {
+        .mbf-label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
@@ -144,11 +122,9 @@
             font-size: 16px;
         }
         
-        input[type="text"],
-        input[type="number"],
-        input[type="email"],
-        textarea,
-        select {
+        .mbf-input,
+        .mbf-textarea,
+        .mbf-select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e0e0e0;
@@ -157,74 +133,83 @@
             background: white;
             color: #333;
             font-family: inherit;
+            display: block;
+            line-height: 1.5;
         }
         
-        input:focus,
-        textarea:focus,
-        select:focus {
+        .mbf-input:focus,
+        .mbf-textarea:focus,
+        .mbf-select:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
-        textarea {
+        .mbf-textarea {
             resize: vertical;
             min-height: 100px;
         }
         
-        .checkbox-group {
+        .mbf-checkbox-group,
+        .mbf-radio-group {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 10px;
             gap: 10px;
         }
         
-        input[type="checkbox"],
-        input[type="radio"] {
+        .mbf-checkbox,
+        .mbf-radio {
             width: 18px;
             height: 18px;
+            flex-shrink: 0;
+            margin-top: 3px;
+            accent-color: #667eea;
             cursor: pointer;
         }
         
-        .checkbox-group label {
-            margin-bottom: 0;
+        .mbf-checkbox-label,
+        .mbf-radio-label {
             font-weight: normal;
             cursor: pointer;
-        }
-        
-        .inline-input {
+            color: #333;
             flex: 1;
-            margin-left: 10px;
         }
         
-        .row {
+        .mbf-inline-input {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .mbf-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
         
-        .flex-row {
+        .mbf-flex-row {
             display: flex;
             gap: 10px;
         }
         
-        .checkbox-list {
+        .mbf-checkbox-list {
             background: #f9f9f9;
             padding: 15px;
             border-radius: 5px;
             margin-top: 10px;
         }
         
-        .privacy-notice {
+        .mbf-privacy {
             background: #f0f8ff;
             padding: 15px;
             border-radius: 5px;
             margin: 20px 0;
             border-left: 4px solid #667eea;
             font-size: 14px;
+            color: #333;
         }
         
-        .submit-btn {
+        .mbf-submit {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 15px 40px;
@@ -238,16 +223,16 @@
             transition: all 0.3s;
         }
         
-        .submit-btn:hover {
+        .mbf-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
         
-        .required {
+        .mbf-required {
             color: #e74c3c;
         }
         
-        .save-indicator {
+        .mbf-save-indicator {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -256,666 +241,658 @@
             padding: 10px 20px;
             border-radius: 5px;
             display: none;
-            animation: fadeInOut 2s ease;
+            animation: mbfFadeInOut 2s ease;
             z-index: 9999;
         }
         
-        .subtitle {
+        .mbf-subtitle {
             margin: 20px 0 15px;
             font-size: 16px;
             font-weight: 600;
             color: #333;
         }
         
-        @keyframes fadeInOut {
+        @keyframes mbfFadeInOut {
             0% { opacity: 0; }
             50% { opacity: 1; }
             100% { opacity: 0; }
         }
         
         @media (max-width: 600px) {
-            .row {
+            .mbf-row {
                 grid-template-columns: 1fr;
             }
             
-            .container {
-                padding: 10px;
+            .mbf-container {
+                padding: 0 10px;
             }
             
-            form {
+            .mbf-form {
                 padding: 20px;
             }
             
-            .checkbox-group {
+            .mbf-checkbox-group,
+            .mbf-radio-group {
                 flex-direction: column;
-                align-items: flex-start;
             }
             
-            .inline-input {
-                margin-left: 0;
+            .mbf-inline-input {
                 margin-top: 10px;
-                width: 100%;
+                min-width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="form-header">
-            <h1>Бриф для розробки маркетингової стратегії</h1>
-            <p>Оренда житлової нерухомості</p>
+    <div class="mbf-wrapper">
+        <div class="mbf-container">
+            <div class="mbf-header">
+                <h1>Бриф для розробки маркетингової стратегії</h1>
+                <p>Оренда житлової нерухомості</p>
+            </div>
+            
+            <div class="mbf-progress">
+                <div class="mbf-progress-bar" id="mbfProgressBar"></div>
+                <span class="mbf-progress-text">Заповнено: <span id="mbfProgressPercent">0</span>%</span>
+            </div>
+            
+            <form action="https://formspree.io/f/xblywvly" method="POST" id="mbfForm" class="mbf-form">
+                <!-- Section 1: Інформація про об'єкт -->
+                <div class="mbf-section">
+                    <h2 class="mbf-section-title">1. ІНФОРМАЦІЯ ПРО ОБ'ЄКТ</h2>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_complex_name">Назва житлового комплексу <span class="mbf-required">*</span></label>
+                        <input type="text" id="mbf_complex_name" name="complex_name" class="mbf-input" required>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_address">Адреса <span class="mbf-required">*</span></label>
+                        <input type="text" id="mbf_address" name="address" class="mbf-input" required>
+                    </div>
+                    
+                    <div class="mbf-row">
+                        <div class="mbf-group">
+                            <label class="mbf-label" for="mbf_district">Район/мікрорайон <span class="mbf-required">*</span></label>
+                            <input type="text" id="mbf_district" name="district" class="mbf-input" required>
+                        </div>
+                        
+                        <div class="mbf-group">
+                            <label class="mbf-label" for="mbf_year_built">Рік будівництва</label>
+                            <input type="number" id="mbf_year_built" name="year_built" class="mbf-input" min="1990" max="2025">
+                        </div>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Правовий статус:</label>
+                        <div style="margin-top: 10px;">
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_owner" name="legal_status" value="owner" class="mbf-radio">
+                                <label for="mbf_owner" class="mbf-radio-label">Власник</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_agency" name="legal_status" value="agency" class="mbf-radio">
+                                <label for="mbf_agency" class="mbf-radio-label">Агентство</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_management" name="legal_status" value="management" class="mbf-radio">
+                                <label for="mbf_management" class="mbf-radio-label">Управляюча компанія</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="mbf-subtitle">Кількість квартир для оренди:</h3>
+                    <div class="mbf-row">
+                        <div class="mbf-group">
+                            <label class="mbf-label" for="mbf_two_room_count">2-кімнатні (шт.)</label>
+                            <input type="number" id="mbf_two_room_count" name="two_room_count" class="mbf-input" min="0">
+                        </div>
+                        
+                        <div class="mbf-group">
+                            <label class="mbf-label" for="mbf_three_room_count">3-кімнатні (шт.)</label>
+                            <input type="number" id="mbf_three_room_count" name="three_room_count" class="mbf-input" min="0">
+                        </div>
+                    </div>
+                    
+                    <h3 class="mbf-subtitle">Площа квартир (м²):</h3>
+                    <div class="mbf-row">
+                        <div class="mbf-group">
+                            <label class="mbf-label">2-кімнатні</label>
+                            <div class="mbf-flex-row">
+                                <input type="number" name="two_room_area_from" class="mbf-input" placeholder="від" min="0">
+                                <input type="number" name="two_room_area_to" class="mbf-input" placeholder="до" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="mbf-group">
+                            <label class="mbf-label">3-кімнатні</label>
+                            <div class="mbf-flex-row">
+                                <input type="number" name="three_room_area_from" class="mbf-input" placeholder="від" min="0">
+                                <input type="number" name="three_room_area_to" class="mbf-input" placeholder="до" min="0">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="mbf-subtitle">Ціновий діапазон оренди (грн/міс):</h3>
+                    <div class="mbf-row">
+                        <div class="mbf-group">
+                            <label class="mbf-label">2-кімнатні <span class="mbf-required">*</span></label>
+                            <div class="mbf-flex-row">
+                                <input type="number" name="two_room_price_from" class="mbf-input" placeholder="від" min="0" required>
+                                <input type="number" name="two_room_price_to" class="mbf-input" placeholder="до" min="0" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mbf-group">
+                            <label class="mbf-label">3-кімнатні <span class="mbf-required">*</span></label>
+                            <div class="mbf-flex-row">
+                                <input type="number" name="three_room_price_from" class="mbf-input" placeholder="від" min="0" required>
+                                <input type="number" name="three_room_price_to" class="mbf-input" placeholder="до" min="0" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Переваги та особливості -->
+                <div class="mbf-section">
+                    <h2 class="mbf-section-title">2. ПЕРЕВАГИ ТА ОСОБЛИВОСТІ</h2>
+                    
+                    <label class="mbf-label">Інфраструктура поруч:</label>
+                    <div class="mbf-checkbox-list">
+                        <div class="mbf-checkbox-group">
+                            <input type="checkbox" id="mbf_metro" name="infrastructure[]" value="metro" class="mbf-checkbox">
+                            <label for="mbf_metro" class="mbf-checkbox-label">Метро</label>
+                            <input type="text" name="metro_details" class="mbf-input mbf-inline-input" placeholder="назва станції, хв пішки">
+                        </div>
+                        
+                        <div class="mbf-checkbox-group">
+                            <input type="checkbox" id="mbf_transport" name="infrastructure[]" value="transport" class="mbf-checkbox">
+                            <label for="mbf_transport" class="mbf-checkbox-label">Зупинки громадського транспорту</label>
+                            <input type="text" name="transport_details" class="mbf-input mbf-inline-input" placeholder="хв пішки">
+                        </div>
+                        
+                        <div class="mbf-checkbox-group">
+                            <input type="checkbox" id="mbf_schools" name="infrastructure[]" value="schools" class="mbf-checkbox">
+                            <label for="mbf_schools" class="mbf-checkbox-label">Школи/садочки</label>
+                            <input type="text" name="schools_details" class="mbf-input mbf-inline-input" placeholder="назви, відстань">
+                        </div>
+                        
+                        <div class="mbf-checkbox-group">
+                            <input type="checkbox" id="mbf_supermarkets" name="infrastructure[]" value="supermarkets" class="mbf-checkbox">
+                            <label for="mbf_supermarkets" class="mbf-checkbox-label">Супермаркети</label>
+                            <input type="text" name="supermarkets_details" class="mbf-input mbf-inline-input" placeholder="назви, відстань">
+                        </div>
+                        
+                        <div class="mbf-checkbox-group">
+                            <input type="checkbox" id="mbf_mall" name="infrastructure[]" value="mall" class="mbf-checkbox">
+                            <label for="mbf_mall" class="mbf-checkbox-label">ТРЦ</label>
+                            <input type="text" name="mall_details" class="mbf-input mbf-inline-input" placeholder="назви, відстань">
+                        </div>
+                        
+                        <div class="mbf-checkbox-group">
+                            <input type="checkbox" id="mbf_parks" name="infrastructure[]" value="parks" class="mbf-checkbox">
+                            <label for="mbf_parks" class="mbf-checkbox-label">Парки/зелені зони</label>
+                            <input type="text" name="parks_details" class="mbf-input mbf-inline-input" placeholder="назви, відстань">
+                        </div>
+                        
+                        <div class="mbf-checkbox-group">
+                            <input type="checkbox" id="mbf_medical" name="infrastructure[]" value="medical" class="mbf-checkbox">
+                            <label for="mbf_medical" class="mbf-checkbox-label">Медичні заклади</label>
+                            <input type="text" name="medical_details" class="mbf-input mbf-inline-input" placeholder="назви, відстань">
+                        </div>
+                    </div>
+                    
+                    <div class="mbf-group" style="margin-top: 20px;">
+                        <label class="mbf-label">Особливості квартир:</label>
+                        <div class="mbf-checkbox-list">
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_furniture" name="features[]" value="furniture" class="mbf-checkbox">
+                                <label for="mbf_furniture" class="mbf-checkbox-label">Меблі</label>
+                                <select name="furniture_type" class="mbf-select mbf-inline-input">
+                                    <option value="">Оберіть</option>
+                                    <option value="full">Повністю</option>
+                                    <option value="partial">Частково</option>
+                                    <option value="none">Без меблів</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_appliances" name="features[]" value="appliances" class="mbf-checkbox">
+                                <label for="mbf_appliances" class="mbf-checkbox-label">Техніка</label>
+                                <input type="text" name="appliances_list" class="mbf-input mbf-inline-input" placeholder="перелічити яка саме">
+                            </div>
+                            
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_renovation" name="features[]" value="renovation" class="mbf-checkbox">
+                                <label for="mbf_renovation" class="mbf-checkbox-label">Ремонт</label>
+                                <select name="renovation_type" class="mbf-select mbf-inline-input">
+                                    <option value="">Оберіть</option>
+                                    <option value="designer">Дизайнерський</option>
+                                    <option value="euro">Євроремонт</option>
+                                    <option value="cosmetic">Косметичний</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_parking" name="features[]" value="parking" class="mbf-checkbox">
+                                <label for="mbf_parking" class="mbf-checkbox-label">Паркінг</label>
+                                <select name="parking_type" class="mbf-select mbf-inline-input">
+                                    <option value="">Оберіть</option>
+                                    <option value="underground">Підземний</option>
+                                    <option value="ground">Наземний</option>
+                                    <option value="none">Відсутній</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Цільова аудиторія -->
+                <div class="mbf-section">
+                    <h2 class="mbf-section-title">3. ЦІЛЬОВА АУДИТОРІЯ</h2>
+                    
+                    <h3 class="mbf-subtitle">Портрет ідеального орендаря:</h3>
+                    <div class="mbf-row">
+                        <div class="mbf-group">
+                            <label class="mbf-label" for="mbf_age_range">Вік</label>
+                            <input type="text" id="mbf_age_range" name="age_range" class="mbf-input" placeholder="наприклад: 25-35">
+                        </div>
+                        
+                        <div class="mbf-group">
+                            <label class="mbf-label" for="mbf_family_status">Сімейний стан</label>
+                            <input type="text" id="mbf_family_status" name="family_status" class="mbf-input" placeholder="наприклад: молода сім'я">
+                        </div>
+                    </div>
+                    
+                    <div class="mbf-row">
+                        <div class="mbf-group">
+                            <label class="mbf-label" for="mbf_income_level">Рівень доходу</label>
+                            <input type="text" id="mbf_income_level" name="income_level" class="mbf-input" placeholder="наприклад: вище середнього">
+                        </div>
+                        
+                        <div class="mbf-group">
+                            <label class="mbf-label" for="mbf_occupation">Сфера діяльності</label>
+                            <input type="text" id="mbf_occupation" name="occupation" class="mbf-input" placeholder="наприклад: IT, менеджери">
+                        </div>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Ключові потреби орендарів (оберіть 3 найважливіші):</label>
+                        <div class="mbf-checkbox-list">
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_need_transport" name="key_needs[]" value="transport" class="mbf-checkbox">
+                                <label for="mbf_need_transport" class="mbf-checkbox-label">Близькість до метро/транспорту</label>
+                            </div>
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_need_infrastructure" name="key_needs[]" value="infrastructure" class="mbf-checkbox">
+                                <label for="mbf_need_infrastructure" class="mbf-checkbox-label">Розвинена інфраструктура</label>
+                            </div>
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_need_security" name="key_needs[]" value="security" class="mbf-checkbox">
+                                <label for="mbf_need_security" class="mbf-checkbox-label">Безпека та охорона</label>
+                            </div>
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_need_renovation" name="key_needs[]" value="renovation" class="mbf-checkbox">
+                                <label for="mbf_need_renovation" class="mbf-checkbox-label">Сучасний ремонт</label>
+                            </div>
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_need_quiet" name="key_needs[]" value="quiet" class="mbf-checkbox">
+                                <label for="mbf_need_quiet" class="mbf-checkbox-label">Тиха локація</label>
+                            </div>
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_need_prestige" name="key_needs[]" value="prestige" class="mbf-checkbox">
+                                <label for="mbf_need_prestige" class="mbf-checkbox-label">Престижний район</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Конкуренція -->
+                <div class="mbf-section">
+                    <h2 class="mbf-section-title">4. КОНКУРЕНЦІЯ</h2>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_competitors">Основні конкуренти в районі (3-5 ЖК)</label>
+                        <textarea id="mbf_competitors" name="competitors" class="mbf-textarea" placeholder="Перелічіть назви житлових комплексів"></textarea>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Ваша цінова політика порівняно з конкурентами:</label>
+                        <div style="margin-top: 10px;">
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_price_lower" name="price_comparison" value="lower" class="mbf-radio">
+                                <label for="mbf_price_lower" class="mbf-radio-label">Ми дешевші на</label>
+                                <input type="number" name="price_lower_percent" class="mbf-input" style="width: 80px;" min="0" max="100">
+                                <span>%</span>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_price_same" name="price_comparison" value="same" class="mbf-radio">
+                                <label for="mbf_price_same" class="mbf-radio-label">Приблизно однаково</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_price_higher" name="price_comparison" value="higher" class="mbf-radio">
+                                <label for="mbf_price_higher" class="mbf-radio-label">Ми дорожчі на</label>
+                                <input type="number" name="price_higher_percent" class="mbf-input" style="width: 80px;" min="0" max="100">
+                                <span>%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Маркетингові цілі -->
+                <div class="mbf-section">
+                    <h2 class="mbf-section-title">5. МАРКЕТИНГОВІ ЦІЛІ</h2>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Терміни заповнення:</label>
+                        <div style="margin-top: 10px;">
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_urgent" name="timeline" value="urgent" class="mbf-radio">
+                                <label for="mbf_urgent" class="mbf-radio-label">Терміново (до 2 тижнів)</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_moderate" name="timeline" value="moderate" class="mbf-radio">
+                                <label for="mbf_moderate" class="mbf-radio-label">Помірно (1 місяць)</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_relaxed" name="timeline" value="relaxed" class="mbf-radio">
+                                <label for="mbf_relaxed" class="mbf-radio-label">Без поспіху (2-3 місяці)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Готовність до компромісів:</label>
+                        <div style="margin-top: 10px;">
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_can_discount" name="compromise" value="discount" class="mbf-radio">
+                                <label for="mbf_can_discount" class="mbf-radio-label">Можемо знизити ціну на</label>
+                                <input type="number" name="discount_percent" class="mbf-input" style="width: 80px;" min="0" max="100">
+                                <span>%</span>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_can_negotiate" name="compromise" value="negotiate" class="mbf-radio">
+                                <label for="mbf_can_negotiate" class="mbf-radio-label">Готові до торгу</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_fixed_price" name="compromise" value="fixed" class="mbf-radio">
+                                <label for="mbf_fixed_price" class="mbf-radio-label">Ціна фіксована</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Бюджет та очікування -->
+                <div class="mbf-section">
+                    <h2 class="mbf-section-title">6. БЮДЖЕТ ТА ОЧІКУВАННЯ</h2>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_marketing_budget">Планований бюджет на маркетинг (грн/міс) <span class="mbf-required">*</span></label>
+                        <select id="mbf_marketing_budget" name="marketing_budget" class="mbf-select" required>
+                            <option value="">Оберіть діапазон</option>
+                            <option value="5000-10000">5 000 - 10 000 грн</option>
+                            <option value="10000-20000">10 000 - 20 000 грн</option>
+                            <option value="20000-50000">20 000 - 50 000 грн</option>
+                            <option value="50000+">50 000+ грн</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_expected_results">Очікувані результати (кількість заявок/показів на місяць)</label>
+                        <input type="text" id="mbf_expected_results" name="expected_results" class="mbf-input" placeholder="Наприклад: 20 показів, 5 підписаних договорів">
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_decision_maker">Хто приймає рішення щодо маркетингу? <span class="mbf-required">*</span></label>
+                        <input type="text" id="mbf_decision_maker" name="decision_maker" class="mbf-input" placeholder="Посада та ПІБ" required>
+                    </div>
+                </div>
+                
+                <!-- Section 7: Додаткова інформація -->
+                <div class="mbf-section">
+                    <h2 class="mbf-section-title">7. ДОДАТКОВА ІНФОРМАЦІЯ</h2>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_unique_advantages">Унікальні переваги вашої пропозиції</label>
+                        <textarea id="mbf_unique_advantages" name="unique_advantages" class="mbf-textarea" placeholder="Що виділяє вашу пропозицію серед інших?"></textarea>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_objections">Можливі заперечення орендарів</label>
+                        <textarea id="mbf_objections" name="objections" class="mbf-textarea" placeholder="Які питання або сумніви можуть виникнути у потенційних орендарів?"></textarea>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_previous_experience">Попередній досвід здачі в оренду</label>
+                        <textarea id="mbf_previous_experience" name="previous_experience" class="mbf-textarea" placeholder="Чи здавали раніше? Які були проблеми?"></textarea>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Наявні фото/відео матеріали:</label>
+                        <div style="margin-top: 10px;">
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_media_yes" name="media_available" value="yes" class="mbf-radio">
+                                <label for="mbf_media_yes" class="mbf-radio-label">Так</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_media_no" name="media_available" value="no" class="mbf-radio">
+                                <label for="mbf_media_no" class="mbf-radio-label">Ні</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_media_needed" name="media_available" value="needed" class="mbf-radio">
+                                <label for="mbf_media_needed" class="mbf-radio-label">Потрібна зйомка</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Що можете надати для маркетингу?</label>
+                        <div class="mbf-checkbox-list">
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_prof_photos" name="materials[]" value="photos" class="mbf-checkbox">
+                                <label for="mbf_prof_photos" class="mbf-checkbox-label">Професійні фото</label>
+                            </div>
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_video_tour" name="materials[]" value="video" class="mbf-checkbox">
+                                <label for="mbf_video_tour" class="mbf-checkbox-label">Відеотур</label>
+                            </div>
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_floor_plans" name="materials[]" value="plans" class="mbf-checkbox">
+                                <label for="mbf_floor_plans" class="mbf-checkbox-label">Плани квартир</label>
+                            </div>
+                            <div class="mbf-checkbox-group">
+                                <input type="checkbox" id="mbf_3d_tour" name="materials[]" value="3d" class="mbf-checkbox">
+                                <label for="mbf_3d_tour" class="mbf-checkbox-label">3D-тур</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label" for="mbf_contact_person">Контактна особа для показів <span class="mbf-required">*</span></label>
+                        <input type="text" id="mbf_contact_person" name="contact_person" class="mbf-input" placeholder="Ім'я та телефон" required>
+                    </div>
+                </div>
+                
+                <!-- Section 8: Технічні питання -->
+                <div class="mbf-section">
+                    <h2 class="mbf-section-title">8. ТЕХНІЧНІ ПИТАННЯ</h2>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Чи є сайт компанії:</label>
+                        <div style="margin-top: 10px;">
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_website_yes" name="has_website" value="yes" class="mbf-radio" onclick="document.getElementById('mbf_website_url').style.display='block'">
+                                <label for="mbf_website_yes" class="mbf-radio-label">Так</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_website_no" name="has_website" value="no" class="mbf-radio" onclick="document.getElementById('mbf_website_url').style.display='none'">
+                                <label for="mbf_website_no" class="mbf-radio-label">Ні</label>
+                            </div>
+                        </div>
+                        <input type="text" id="mbf_website_url" name="website_url" class="mbf-input" placeholder="Введіть посилання на сайт" style="display: none; margin-top: 10px;">
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Сторінки в соцмережах:</label>
+                        <input type="text" name="facebook_page" class="mbf-input" placeholder="Facebook" style="margin-top: 10px;">
+                        <input type="text" name="instagram_page" class="mbf-input" placeholder="Instagram" style="margin-top: 10px;">
+                    </div>
+                    
+                    <div class="mbf-group">
+                        <label class="mbf-label">Досвід реклами раніше:</label>
+                        <div style="margin-top: 10px;">
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_ads_yes" name="previous_ads" value="yes" class="mbf-radio" onclick="document.getElementById('mbf_ads_details').style.display='block'">
+                                <label for="mbf_ads_yes" class="mbf-radio-label">Так</label>
+                            </div>
+                            <div class="mbf-radio-group">
+                                <input type="radio" id="mbf_ads_no" name="previous_ads" value="no" class="mbf-radio" onclick="document.getElementById('mbf_ads_details').style.display='none'">
+                                <label for="mbf_ads_no" class="mbf-radio-label">Ні</label>
+                            </div>
+                        </div>
+                        <textarea id="mbf_ads_details" name="ads_details" class="mbf-textarea" placeholder="Що використовували? Які були результати?" style="display: none; margin-top: 10px;"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Privacy notice -->
+                <div class="mbf-privacy">
+                    <p><strong>Конфіденційність:</strong> Вся надана інформація використовуватиметься виключно для розробки маркетингової стратегії та не буде передана третім особам.</p>
+                </div>
+                
+                <!-- Hidden field for email reply -->
+                <input type="hidden" name="_subject" value="Заповнена анкета для маркетингової стратегії">
+                
+                <button type="submit" class="mbf-submit">Відправити анкету</button>
+            </form>
+            
+            <div class="mbf-save-indicator" id="mbfSaveIndicator">Дані збережено</div>
         </div>
-        
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-            <span class="progress-text">Заповнено: <span id="progressPercent">0</span>%</span>
-        </div>
-        
-        <form action="https://formspree.io/f/xblywvly" method="POST" id="marketingForm" target="_parent">
-            <!-- Section 1 -->
-            <div class="section">
-                <h2 class="section-title">1. ІНФОРМАЦІЯ ПРО ОБ\'ЄКТ</h2>
-                
-                <div class="form-group">
-                    <label for="complex_name">Назва житлового комплексу <span class="required">*</span></label>
-                    <input type="text" id="complex_name" name="complex_name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="address">Адреса <span class="required">*</span></label>
-                    <input type="text" id="address" name="address" required>
-                </div>
-                
-                <div class="row">
-                    <div class="form-group">
-                        <label for="district">Район/мікрорайон <span class="required">*</span></label>
-                        <input type="text" id="district" name="district" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="year_built">Рік будівництва</label>
-                        <input type="number" id="year_built" name="year_built" min="1990" max="2025">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Правовий статус:</label>
-                    <div style="margin-top: 10px;">
-                        <div class="checkbox-group">
-                            <input type="radio" id="owner" name="legal_status" value="owner">
-                            <label for="owner">Власник</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="agency" name="legal_status" value="agency">
-                            <label for="agency">Агентство</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="management" name="legal_status" value="management">
-                            <label for="management">Управляюча компанія</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <h3 class="subtitle">Кількість квартир для оренди:</h3>
-                <div class="row">
-                    <div class="form-group">
-                        <label for="two_room_count">2-кімнатні (шт.)</label>
-                        <input type="number" id="two_room_count" name="two_room_count" min="0">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="three_room_count">3-кімнатні (шт.)</label>
-                        <input type="number" id="three_room_count" name="three_room_count" min="0">
-                    </div>
-                </div>
-                
-                <h3 class="subtitle">Площа квартир (м²):</h3>
-                <div class="row">
-                    <div class="form-group">
-                        <label>2-кімнатні</label>
-                        <div class="flex-row">
-                            <input type="number" name="two_room_area_from" placeholder="від" min="0">
-                            <input type="number" name="two_room_area_to" placeholder="до" min="0">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>3-кімнатні</label>
-                        <div class="flex-row">
-                            <input type="number" name="three_room_area_from" placeholder="від" min="0">
-                            <input type="number" name="three_room_area_to" placeholder="до" min="0">
-                        </div>
-                    </div>
-                </div>
-                
-                <h3 class="subtitle">Ціновий діапазон оренди (грн/міс):</h3>
-                <div class="row">
-                    <div class="form-group">
-                        <label>2-кімнатні <span class="required">*</span></label>
-                        <div class="flex-row">
-                            <input type="number" name="two_room_price_from" placeholder="від" min="0" required>
-                            <input type="number" name="two_room_price_to" placeholder="до" min="0" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>3-кімнатні <span class="required">*</span></label>
-                        <div class="flex-row">
-                            <input type="number" name="three_room_price_from" placeholder="від" min="0" required>
-                            <input type="number" name="three_room_price_to" placeholder="до" min="0" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Section 2 -->
-            <div class="section">
-                <h2 class="section-title">2. ПЕРЕВАГИ ТА ОСОБЛИВОСТІ</h2>
-                
-                <label>Інфраструктура поруч:</label>
-                <div class="checkbox-list">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="metro" name="infrastructure[]" value="metro">
-                        <label for="metro">Метро</label>
-                        <input type="text" name="metro_details" class="inline-input" placeholder="назва станції, хв пішки">
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="transport" name="infrastructure[]" value="transport">
-                        <label for="transport">Зупинки громадського транспорту</label>
-                        <input type="text" name="transport_details" class="inline-input" placeholder="хв пішки">
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="schools" name="infrastructure[]" value="schools">
-                        <label for="schools">Школи/садочки</label>
-                        <input type="text" name="schools_details" class="inline-input" placeholder="назви, відстань">
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="supermarkets" name="infrastructure[]" value="supermarkets">
-                        <label for="supermarkets">Супермаркети</label>
-                        <input type="text" name="supermarkets_details" class="inline-input" placeholder="назви, відстань">
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="mall" name="infrastructure[]" value="mall">
-                        <label for="mall">ТРЦ</label>
-                        <input type="text" name="mall_details" class="inline-input" placeholder="назви, відстань">
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="parks" name="infrastructure[]" value="parks">
-                        <label for="parks">Парки/зелені зони</label>
-                        <input type="text" name="parks_details" class="inline-input" placeholder="назви, відстань">
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="medical" name="infrastructure[]" value="medical">
-                        <label for="medical">Медичні заклади</label>
-                        <input type="text" name="medical_details" class="inline-input" placeholder="назви, відстань">
-                    </div>
-                </div>
-                
-                <div class="form-group" style="margin-top: 20px;">
-                    <label>Особливості квартир:</label>
-                    <div class="checkbox-list">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="furniture" name="features[]" value="furniture">
-                            <label for="furniture">Меблі</label>
-                            <select name="furniture_type" class="inline-input">
-                                <option value="">Оберіть</option>
-                                <option value="full">Повністю</option>
-                                <option value="partial">Частково</option>
-                                <option value="none">Без меблів</option>
-                            </select>
-                        </div>
-                        
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="appliances" name="features[]" value="appliances">
-                            <label for="appliances">Техніка</label>
-                            <input type="text" name="appliances_list" class="inline-input" placeholder="перелічити яка саме">
-                        </div>
-                        
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="renovation" name="features[]" value="renovation">
-                            <label for="renovation">Ремонт</label>
-                            <select name="renovation_type" class="inline-input">
-                                <option value="">Оберіть</option>
-                                <option value="designer">Дизайнерський</option>
-                                <option value="euro">Євроремонт</option>
-                                <option value="cosmetic">Косметичний</option>
-                            </select>
-                        </div>
-                        
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="parking" name="features[]" value="parking">
-                            <label for="parking">Паркінг</label>
-                            <select name="parking_type" class="inline-input">
-                                <option value="">Оберіть</option>
-                                <option value="underground">Підземний</option>
-                                <option value="ground">Наземний</option>
-                                <option value="none">Відсутній</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Section 3 -->
-            <div class="section">
-                <h2 class="section-title">3. ЦІЛЬОВА АУДИТОРІЯ</h2>
-                
-                <h3 class="subtitle">Портрет ідеального орендаря:</h3>
-                <div class="row">
-                    <div class="form-group">
-                        <label for="age_range">Вік</label>
-                        <input type="text" id="age_range" name="age_range" placeholder="наприклад: 25-35">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="family_status">Сімейний стан</label>
-                        <input type="text" id="family_status" name="family_status" placeholder="наприклад: молода сім\'я">
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="form-group">
-                        <label for="income_level">Рівень доходу</label>
-                        <input type="text" id="income_level" name="income_level" placeholder="наприклад: вище середнього">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="occupation">Сфера діяльності</label>
-                        <input type="text" id="occupation" name="occupation" placeholder="наприклад: IT, менеджери">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Ключові потреби орендарів (оберіть 3 найважливіші):</label>
-                    <div class="checkbox-list">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="need_transport" name="key_needs[]" value="transport">
-                            <label for="need_transport">Близькість до метро/транспорту</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="need_infrastructure" name="key_needs[]" value="infrastructure">
-                            <label for="need_infrastructure">Розвинена інфраструктура</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="need_security" name="key_needs[]" value="security">
-                            <label for="need_security">Безпека та охорона</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="need_renovation" name="key_needs[]" value="renovation">
-                            <label for="need_renovation">Сучасний ремонт</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="need_quiet" name="key_needs[]" value="quiet">
-                            <label for="need_quiet">Тиха локація</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="need_prestige" name="key_needs[]" value="prestige">
-                            <label for="need_prestige">Престижний район</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Section 4 -->
-            <div class="section">
-                <h2 class="section-title">4. КОНКУРЕНЦІЯ</h2>
-                
-                <div class="form-group">
-                    <label for="competitors">Основні конкуренти в районі (3-5 ЖК)</label>
-                    <textarea id="competitors" name="competitors" placeholder="Перелічіть назви житлових комплексів"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Ваша цінова політика порівняно з конкурентами:</label>
-                    <div style="margin-top: 10px;">
-                        <div class="checkbox-group">
-                            <input type="radio" id="price_lower" name="price_comparison" value="lower">
-                            <label for="price_lower">Ми дешевші на</label>
-                            <input type="number" name="price_lower_percent" min="0" max="100" style="width: 80px; margin-left: 10px;">
-                            <span>%</span>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="price_same" name="price_comparison" value="same">
-                            <label for="price_same">Приблизно однаково</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="price_higher" name="price_comparison" value="higher">
-                            <label for="price_higher">Ми дорожчі на</label>
-                            <input type="number" name="price_higher_percent" min="0" max="100" style="width: 80px; margin-left: 10px;">
-                            <span>%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Section 5 -->
-            <div class="section">
-                <h2 class="section-title">5. МАРКЕТИНГОВІ ЦІЛІ</h2>
-                
-                <div class="form-group">
-                    <label>Терміни заповнення:</label>
-                    <div style="margin-top: 10px;">
-                        <div class="checkbox-group">
-                            <input type="radio" id="urgent" name="timeline" value="urgent">
-                            <label for="urgent">Терміново (до 2 тижнів)</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="moderate" name="timeline" value="moderate">
-                            <label for="moderate">Помірно (1 місяць)</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="relaxed" name="timeline" value="relaxed">
-                            <label for="relaxed">Без поспіху (2-3 місяці)</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Готовність до компромісів:</label>
-                    <div style="margin-top: 10px;">
-                        <div class="checkbox-group">
-                            <input type="radio" id="can_discount" name="compromise" value="discount">
-                            <label for="can_discount">Можемо знизити ціну на</label>
-                            <input type="number" name="discount_percent" min="0" max="100" style="width: 80px; margin-left: 10px;">
-                            <span>%</span>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="can_negotiate" name="compromise" value="negotiate">
-                            <label for="can_negotiate">Готові до торгу</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="fixed_price" name="compromise" value="fixed">
-                            <label for="fixed_price">Ціна фіксована</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Section 6 -->
-            <div class="section">
-                <h2 class="section-title">6. БЮДЖЕТ ТА ОЧІКУВАННЯ</h2>
-                
-                <div class="form-group">
-                    <label for="marketing_budget">Планований бюджет на маркетинг (грн/міс) <span class="required">*</span></label>
-                    <select id="marketing_budget" name="marketing_budget" required>
-                        <option value="">Оберіть діапазон</option>
-                        <option value="5000-10000">5 000 - 10 000 грн</option>
-                        <option value="10000-20000">10 000 - 20 000 грн</option>
-                        <option value="20000-50000">20 000 - 50 000 грн</option>
-                        <option value="50000+">50 000+ грн</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="expected_results">Очікувані результати (кількість заявок/показів на місяць)</label>
-                    <input type="text" id="expected_results" name="expected_results" placeholder="Наприклад: 20 показів, 5 підписаних договорів">
-                </div>
-                
-                <div class="form-group">
-                    <label for="decision_maker">Хто приймає рішення щодо маркетингу? <span class="required">*</span></label>
-                    <input type="text" id="decision_maker" name="decision_maker" placeholder="Посада та ПІБ" required>
-                </div>
-            </div>
-            
-            <!-- Section 7 -->
-            <div class="section">
-                <h2 class="section-title">7. ДОДАТКОВА ІНФОРМАЦІЯ</h2>
-                
-                <div class="form-group">
-                    <label for="unique_advantages">Унікальні переваги вашої пропозиції</label>
-                    <textarea id="unique_advantages" name="unique_advantages" placeholder="Що виділяє вашу пропозицію серед інших?"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="objections">Можливі заперечення орендарів</label>
-                    <textarea id="objections" name="objections" placeholder="Які питання або сумніви можуть виникнути у потенційних орендарів?"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="previous_experience">Попередній досвід здачі в оренду</label>
-                    <textarea id="previous_experience" name="previous_experience" placeholder="Чи здавали раніше? Які були проблеми?"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Наявні фото/відео матеріали:</label>
-                    <div style="margin-top: 10px;">
-                        <div class="checkbox-group">
-                            <input type="radio" id="media_yes" name="media_available" value="yes">
-                            <label for="media_yes">Так</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="media_no" name="media_available" value="no">
-                            <label for="media_no">Ні</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="media_needed" name="media_available" value="needed">
-                            <label for="media_needed">Потрібна зйомка</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Що можете надати для маркетингу?</label>
-                    <div class="checkbox-list">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="prof_photos" name="materials[]" value="photos">
-                            <label for="prof_photos">Професійні фото</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="video_tour" name="materials[]" value="video">
-                            <label for="video_tour">Відеотур</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="floor_plans" name="materials[]" value="plans">
-                            <label for="floor_plans">Плани квартир</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="3d_tour" name="materials[]" value="3d">
-                            <label for="3d_tour">3D-тур</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="contact_person">Контактна особа для показів <span class="required">*</span></label>
-                    <input type="text" id="contact_person" name="contact_person" placeholder="Ім\'я та телефон" required>
-                </div>
-            </div>
-            
-            <!-- Section 8 -->
-            <div class="section">
-                <h2 class="section-title">8. ТЕХНІЧНІ ПИТАННЯ</h2>
-                
-                <div class="form-group">
-                    <label>Чи є сайт компанії:</label>
-                    <div style="margin-top: 10px;">
-                        <div class="checkbox-group">
-                            <input type="radio" id="website_yes" name="has_website" value="yes" onclick="document.getElementById(\'website_url\').style.display=\'block\'">
-                            <label for="website_yes">Так</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="website_no" name="has_website" value="no" onclick="document.getElementById(\'website_url\').style.display=\'none\'">
-                            <label for="website_no">Ні</label>
-                        </div>
-                    </div>
-                    <input type="text" id="website_url" name="website_url" placeholder="Введіть посилання на сайт" style="display: none; margin-top: 10px;">
-                </div>
-                
-                <div class="form-group">
-                    <label>Сторінки в соцмережах:</label>
-                    <input type="text" name="facebook_page" placeholder="Facebook" style="margin-top: 10px;">
-                    <input type="text" name="instagram_page" placeholder="Instagram" style="margin-top: 10px;">
-                </div>
-                
-                <div class="form-group">
-                    <label>Досвід реклами раніше:</label>
-                    <div style="margin-top: 10px;">
-                        <div class="checkbox-group">
-                            <input type="radio" id="ads_yes" name="previous_ads" value="yes" onclick="document.getElementById(\'ads_details\').style.display=\'block\'">
-                            <label for="ads_yes">Так</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="radio" id="ads_no" name="previous_ads" value="no" onclick="document.getElementById(\'ads_details\').style.display=\'none\'">
-                            <label for="ads_no">Ні</label>
-                        </div>
-                    </div>
-                    <textarea id="ads_details" name="ads_details" placeholder="Що використовували? Які були результати?" style="display: none; margin-top: 10px;"></textarea>
-                </div>
-            </div>
-            
-            <div class="privacy-notice">
-                <p><strong>Конфіденційність:</strong> Вся надана інформація використовуватиметься виключно для розробки маркетингової стратегії та не буде передана третім особам.</p>
-            </div>
-            
-            <input type="hidden" name="_subject" value="Заповнена анкета для маркетингової стратегії">
-            
-            <button type="submit" class="submit-btn">Відправити анкету</button>
-        </form>
-        
-        <div class="save-indicator" id="saveIndicator">Дані збережено</div>
     </div>
 
     <script>
-        function updateProgress() {
-            const inputs = document.querySelectorAll("input[required], select[required], textarea[required]");
-            const filled = Array.from(inputs).filter(input => input.value.trim() !== "").length;
-            const percent = Math.round((filled / inputs.length) * 100);
-            
-            document.getElementById("progressBar").style.width = percent + "%";
-            document.getElementById("progressPercent").textContent = percent;
-        }
-
-        function saveFormData() {
-            const formData = new FormData(document.getElementById("marketingForm"));
-            const data = {};
-            
-            for (let [key, value] of formData.entries()) {
-                if (data[key]) {
-                    if (Array.isArray(data[key])) {
-                        data[key].push(value);
-                    } else {
-                        data[key] = [data[key], value];
-                    }
-                } else {
-                    data[key] = value;
-                }
+        (function() {
+            // Progress bar functionality
+            function updateProgress() {
+                const form = document.getElementById('mbfForm');
+                const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+                const filled = Array.from(inputs).filter(input => input.value.trim() !== '').length;
+                const percent = Math.round((filled / inputs.length) * 100);
+                
+                document.getElementById('mbfProgressBar').style.width = percent + '%';
+                document.getElementById('mbfProgressPercent').textContent = percent;
             }
-            
-            localStorage.setItem("rentalMarketingBrief", JSON.stringify(data));
-            
-            const saveIndicator = document.getElementById("saveIndicator");
-            saveIndicator.style.display = "block";
-            setTimeout(() => {
-                saveIndicator.style.display = "none";
-            }, 2000);
-        }
 
-        function restoreFormData() {
-            const saved = localStorage.getItem("rentalMarketingBrief");
-            if (saved) {
-                try {
-                    const data = JSON.parse(saved);
-                    const form = document.getElementById("marketingForm");
-                    
-                    for (let [key, value] of Object.entries(data)) {
-                        if (Array.isArray(value)) {
-                            value.forEach(val => {
-                                const input = form.querySelector(`[name="${key}"][value="${val}"]`);
-                                if (input && (input.type === "checkbox" || input.type === "radio")) {
-                                    input.checked = true;
-                                }
-                            });
+            // Autosave functionality
+            function saveFormData() {
+                const formData = new FormData(document.getElementById('mbfForm'));
+                const data = {};
+                
+                for (let [key, value] of formData.entries()) {
+                    if (data[key]) {
+                        if (Array.isArray(data[key])) {
+                            data[key].push(value);
                         } else {
-                            const input = form.querySelector(`[name="${key}"]`);
-                            if (input) {
-                                if (input.type === "checkbox" || input.type === "radio") {
-                                    const radioInput = form.querySelector(`[name="${key}"][value="${value}"]`);
-                                    if (radioInput) radioInput.checked = true;
-                                } else {
-                                    input.value = value;
+                            data[key] = [data[key], value];
+                        }
+                    } else {
+                        data[key] = value;
+                    }
+                }
+                
+                localStorage.setItem('mbfRentalBrief', JSON.stringify(data));
+                
+                // Show save indicator
+                const saveIndicator = document.getElementById('mbfSaveIndicator');
+                saveIndicator.style.display = 'block';
+                setTimeout(() => {
+                    saveIndicator.style.display = 'none';
+                }, 2000);
+            }
+
+            // Restore form data
+            function restoreFormData() {
+                const saved = localStorage.getItem('mbfRentalBrief');
+                if (saved) {
+                    try {
+                        const data = JSON.parse(saved);
+                        const form = document.getElementById('mbfForm');
+                        
+                        for (let [key, value] of Object.entries(data)) {
+                            if (Array.isArray(value)) {
+                                value.forEach(val => {
+                                    const input = form.querySelector(`[name="${key}"][value="${val}"]`);
+                                    if (input && (input.type === 'checkbox' || input.type === 'radio')) {
+                                        input.checked = true;
+                                    }
+                                });
+                            } else {
+                                const input = form.querySelector(`[name="${key}"]`);
+                                if (input) {
+                                    if (input.type === 'checkbox' || input.type === 'radio') {
+                                        const radioInput = form.querySelector(`[name="${key}"][value="${value}"]`);
+                                        if (radioInput) radioInput.checked = true;
+                                    } else {
+                                        input.value = value;
+                                    }
                                 }
                             }
                         }
+                        
+                        // Trigger change events for conditional fields
+                        const websiteRadio = document.querySelector('input[name="has_website"]:checked');
+                        if (websiteRadio) {
+                            document.getElementById('mbf_website_url').style.display = 
+                                websiteRadio.value === 'yes' ? 'block' : 'none';
+                        }
+                        
+                        const adsRadio = document.querySelector('input[name="previous_ads"]:checked');
+                        if (adsRadio) {
+                            document.getElementById('mbf_ads_details').style.display = 
+                                adsRadio.value === 'yes' ? 'block' : 'none';
+                        }
+                        
+                        updateProgress();
+                    } catch (e) {
+                        console.error('Error restoring form data:', e);
                     }
-                    
-                    const websiteRadio = document.querySelector("input[name=\'has_website\']:checked");
-                    if (websiteRadio) {
-                        document.getElementById("website_url").style.display = 
-                            websiteRadio.value === "yes" ? "block" : "none";
-                    }
-                    
-                    const adsRadio = document.querySelector("input[name=\'previous_ads\']:checked");
-                    if (adsRadio) {
-                        document.getElementById("ads_details").style.display = 
-                            adsRadio.value === "yes" ? "block" : "none";
-                    }
-                    
-                    updateProgress();
-                } catch (e) {
-                    console.error("Error restoring form data:", e);
                 }
             }
-        }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            restoreFormData();
-            updateProgress();
-        });
-
-        document.addEventListener("input", updateProgress);
-        document.addEventListener("change", updateProgress);
-
-        setInterval(saveFormData, 30000);
-
-        document.getElementById("marketingForm").addEventListener("submit", () => {
-            localStorage.removeItem("rentalMarketingBrief");
-        });
-
-        const keyNeedsCheckboxes = document.querySelectorAll("input[name=\'key_needs[]\']");
-        keyNeedsCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener("change", () => {
-                const checkedCount = document.querySelectorAll("input[name=\'key_needs[]\']:checked").length;
-                if (checkedCount >= 3) {
-                    keyNeedsCheckboxes.forEach(cb => {
-                        if (!cb.checked) cb.disabled = true;
-                    });
-                } else {
-                    keyNeedsCheckboxes.forEach(cb => {
-                        cb.disabled = false;
-                    });
-                }
+            // Event listeners
+            document.addEventListener('DOMContentLoaded', () => {
+                restoreFormData();
+                updateProgress();
             });
-        });
-    </script>
-</body>
-</html>
-'></iframe>
-    </div>
-    
-    <script>
-        // Автоматичне налаштування висоти iframe
-        function adjustIframeHeight() {
-            const iframe = document.getElementById('briefIframe');
-            try {
-                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                const height = iframeDocument.documentElement.scrollHeight;
-                iframe.style.height = height + 'px';
-            } catch (e) {
-                console.log('Height adjustment failed:', e);
-            }
-        }
-        
-        window.addEventListener('load', () => {
-            setTimeout(adjustIframeHeight, 500);
-        });
-        
-        window.addEventListener('resize', adjustIframeHeight);
+
+            const form = document.getElementById('mbfForm');
+            form.addEventListener('input', updateProgress);
+            form.addEventListener('change', updateProgress);
+
+            // Autosave every 30 seconds
+            setInterval(saveFormData, 30000);
+
+            // Save on form submit
+            form.addEventListener('submit', () => {
+                localStorage.removeItem('mbfRentalBrief');
+            });
+
+            // Limit checkbox selection for key needs
+            const keyNeedsCheckboxes = document.querySelectorAll('input[name="key_needs[]"]');
+            keyNeedsCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const checkedCount = document.querySelectorAll('input[name="key_needs[]"]:checked').length;
+                    if (checkedCount >= 3) {
+                        keyNeedsCheckboxes.forEach(cb => {
+                            if (!cb.checked) cb.disabled = true;
+                        });
+                    } else {
+                        keyNeedsCheckboxes.forEach(cb => {
+                            cb.disabled = false;
+                        });
+                    }
+                });
+            });
+        })();
     </script>
 </body>
 </html>
